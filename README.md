@@ -9,11 +9,11 @@ b) Run one simulation implemented in com.petclinic.simulations.BasicSimulation c
   
 -- with default values:
 
-`gradlew.bat clean gatlingRun-com.petclinic.simulations.BasicSimulation`
+`./gradlew clean gatlingRun-com.petclinic.simulations.BasicSimulation`
 `gradlew.bat clean gatlingRun-com.petclinic.simulations.BasicSimulation`
 
 -- with set values from command line:
-`gradlew.bat clean gatlingRun-com.petclinic.simulations.BasicSimulation -Dplayers=6 -DplayerSuccessfulRequests=99`
+`./gradlew clean gatlingRun-com.petclinic.simulations.BasicSimulation -Dplayers=6 -DplayerSuccessfulRequests=99`
 `gradlew.bat clean gatlingRun-com.petclinic.simulations.BasicSimulation -Dplayers=6 -DplayerSuccessfulRequests=99`
 
 #### Gatling helpful docs:

@@ -10,16 +10,16 @@ object PetClinicScenario {
 
   val mainPath: String = "data/default"
 
-  val petTypesFeeder: BatchableFeederBuilder[String] = csv(mainPath + "/petTypes.csv")
   val ownersFeeder: BatchableFeederBuilder[String] = csv(mainPath + "/owners.csv")
   val vetsFeeder: BatchableFeederBuilder[String] = csv(mainPath + "/vets.csv")
-  val petsFeeder: BatchableFeederBuilder[String] = csv(mainPath + "/pets.csv")
   val visitsFeeder: BatchableFeederBuilder[String] = csv(mainPath + "/visits.csv")
+  val petsFeeder: BatchableFeederBuilder[String] = csv(mainPath + "/pets.csv")
+  val petTypesFeeder: BatchableFeederBuilder[String] = csv(mainPath + "/petTypes.csv")
 
-  val defaultPause: Duration = Duration(1, SECONDS)
+  val defaultPause: Duration = Duration(1, SECONDS) //todo: try to use in code
 
   val basicScenario: ScenarioBuilder =
-    scenario("Basic scenario")
+    scenario("Basic scenario - check GET requests for particular values (owner, vet, visit, pet, petType)")
       .feed(ownersFeeder.circular)
       .repeat(4)(
         exec(PetClinicRequests.getOwner().pause(Duration(1, SECONDS)))
