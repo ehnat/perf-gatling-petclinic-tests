@@ -1,5 +1,5 @@
 plugins {
-    id 'java'
+    id 'io.gatling.gradle' version '3.5.1'
 }
 
 group 'com.petclinic'
@@ -10,10 +10,15 @@ repositories {
 }
 
 dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+    gatlingImplementation 'io.rest-assured:rest-assured:3.3.0'
 }
 
-test {
-    useJUnitPlatform()
+gatling {
+//    toolVersion = '3.4.0'
+//    scalaVersion = '2.12.8'
+//    simulations = {
+//        include '**/*Simulation.scala'
+//    }
+    logLevel = 'WARN' // logback root level
+    logHttp = 'NONE' // set to 'ALL' for all HTTP traffic in TRACE, 'FAILURES' for failed HTTP traffic in DEBUG
 }
