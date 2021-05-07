@@ -9,7 +9,7 @@ object PetClinicRequests {
 
   def getOwner(): ChainBuilder = {
     exec(
-      http("GET owner: id ${ownerId}, name ${ownerFirstName}")
+      http("GET owner (${ownerId}, ${ownerFirstName})")
         .get(Paths.owner)
         .check(status.is(200))
         .check(bodyString.exists)
@@ -19,7 +19,7 @@ object PetClinicRequests {
 
   def getVet(): ChainBuilder = {
     exec(
-      http("GET vet: id ${vetId}, name ${vetFirstName}")
+      http("GET vet (${vetId}, ${vetFirstName})")
         .get(Paths.vet)
         .check(status.is(200))
         .check(bodyString.exists)
@@ -29,7 +29,7 @@ object PetClinicRequests {
 
   def getPet(): ChainBuilder = {
     exec(
-      http("GET pet: id ${petId}, name ${petName}")
+      http("GET pet (${petId}, ${petName})")
         .get(Paths.pet)
         .check(status.is(200))
         .check(bodyString.exists)
@@ -39,7 +39,7 @@ object PetClinicRequests {
 
   def getPetType(): ChainBuilder = {
     exec(
-      http("GET petType: id ${petTypeId}, name ${petTypeName}")
+      http("GET petType (${petTypeId}, ${petTypeName})")
         .get(Paths.petType)
         .check(status.is(200))
         .check(bodyString.exists)
@@ -50,7 +50,7 @@ object PetClinicRequests {
 
   def getVisit(): ChainBuilder = {
     exec(
-      http("GET visit: id ${visitId}")
+      http("GET visit (id:${visitId})")
         .get(Paths.visit)
         .check(status.is(200))
         .check(bodyString.exists)

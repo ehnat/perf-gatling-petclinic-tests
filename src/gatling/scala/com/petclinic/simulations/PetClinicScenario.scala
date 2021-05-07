@@ -4,7 +4,7 @@ import io.gatling.core.Predef._
 import io.gatling.core.feeder._
 import io.gatling.core.structure.ScenarioBuilder
 
-import scala.concurrent.duration.{Duration, SECONDS}
+import scala.concurrent.duration._
 
 object PetClinicScenario {
 
@@ -16,30 +16,30 @@ object PetClinicScenario {
   val petsFeeder: BatchableFeederBuilder[String] = csv(mainPath + "/pets.csv")
   val petTypesFeeder: BatchableFeederBuilder[String] = csv(mainPath + "/petTypes.csv")
 
-  val defaultPause: Duration = Duration(1, SECONDS) //todo: try to use in code
+  val pauseOneSec: FiniteDuration = Duration(1, SECONDS)
 
   val basicScenario: ScenarioBuilder =
     scenario("Basic scenario - check GET requests for particular values (owner, vet, visit, pet, petType)")
       .feed(ownersFeeder.circular)
       .repeat(4)(
-        exec(PetClinicRequests.getOwner().pause(Duration(1, SECONDS)))
+        exec(PetClinicRequests.getOwner().pause(pauseOneSec))
       )
 
       .feed(vetsFeeder.circular)
       .repeat(2)(
-        exec(PetClinicRequests.getVet().pause(Duration(1, SECONDS)))
+        exec(PetClinicRequests.getVet().pause(pauseOneSec))
       )
 
       .feed(petsFeeder.circular)
-      .exec(PetClinicRequests.getPet())
+      .exec(PetClinicRequests.getPet().pause(pauseOneSec))
 
       .feed(petTypesFeeder.circular)
       .repeat(2)(
-        exec(PetClinicRequests.getPetType().pause(Duration(1, SECONDS)))
+        exec(PetClinicRequests.getPetType().pause(pauseOneSec))
       )
 
       .feed(visitsFeeder.circular)
       .repeat(3)(
-        exec(PetClinicRequests.getVisit().pause(Duration(1, SECONDS)))
+        exec(PetClinicRequests.getVisit().pause(pauseOneSec))
       )
 }

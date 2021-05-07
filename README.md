@@ -17,7 +17,7 @@ b) Run one simulation implemented in com.petclinic.simulations.BasicSimulation c
 `gradlew.bat clean gatlingRun-com.petclinic.simulations.BasicSimulation -Dplayers=6 -DplayerSuccessfulRequests=99`
 
 #### Gatling helpful docs:
+- concepts: `https://gatling.io/docs/current/general/concepts/`
 - simulation: `https://gatling.io/docs/current/general/simulation_setup/`
 - scenario: `https://gatling.io/docs/current/general/scenario/`
 - requests: `https://gatling.io/docs/current/http/`
-- concepts: `https://gatling.io/docs/current/general/concepts/`
