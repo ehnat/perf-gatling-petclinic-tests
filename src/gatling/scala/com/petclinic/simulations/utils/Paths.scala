@@ -9,7 +9,6 @@ object Paths {
   val pets: String = "/pets"
   val pet: String = "/pets/${petId}"
   val petType: String = "/pettypes/${petTypeId}"
+  val visits: String = "/visits"
   val visit: String = "/visits/${visitId}"
-
-
 }

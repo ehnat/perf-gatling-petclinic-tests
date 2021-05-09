@@ -1,5 +1,6 @@
 package com.petclinic.simulations
 
+import com.github.javafaker.Faker
 import io.gatling.core.Predef._
 import io.gatling.core.feeder._
 import io.gatling.core.structure.ScenarioBuilder
@@ -7,6 +8,8 @@ import io.gatling.core.structure.ScenarioBuilder
 import scala.concurrent.duration._
 
 object PetClinicScenario {
+
+  val faker = new Faker()
 
   val mainPath: String = "data/default"
 
@@ -42,4 +45,18 @@ object PetClinicScenario {
       .repeat(3)(
         exec(PetClinicRequests.getVisit().pause(pauseOneSec))
       )
+
+  val addOwnerPetVisitScenario: ScenarioBuilder = {
+    val ownerFirstName: String = s"o_${faker.name().firstName()}"
+    val petName: String = s"p_${faker.name().name()}"
+    val visitDescription: String = s"v_${faker.animal().name()}"
+
+    scenario("Add owner, pet, visit")
+      .forever(
+        feed(petTypesFeeder.random)
+          exec (PetClinicRequests.addOwnerWithFirstName(ownerFirstName).pause(pauseOneSec))
+          exec (PetClinicRequests.addPetWithName(petName).pause(pauseOneSec))
+          exec (PetClinicRequests.addVisitWithDescription(visitDescription).pause(pauseOneSec))
+      )
+  }
 }

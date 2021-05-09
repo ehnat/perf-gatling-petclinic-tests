@@ -1,5 +1,7 @@
 package com.petclinic.simulations
 
+import com.petclinic.databuilders.factories.{OwnerFactory, PetFactory, VisitFactory}
+import com.petclinic.simulations.json.JacksonSupport
 import io.gatling.core.Predef._
 import io.gatling.core.structure.ChainBuilder
 import io.gatling.http.Predef._
@@ -14,6 +16,18 @@ object PetClinicRequests {
         .check(status.is(200))
         .check(bodyString.exists)
         .check(jsonPath("$.firstName").is("${ownerFirstName}"))
+    )
+  }
+
+  def addOwnerWithFirstName(firstName: String): ChainBuilder = {
+    exec(
+      http(s"Add owner $firstName")
+        .post(Paths.owners)
+        .body(StringBody(JacksonSupport.toJsonString(OwnerFactory.getOwner(firstName)))).asJson
+        .check(status.is(201))
+        .check(bodyString.exists)
+        .check(jsonPath("$.id").exists)
+        .check(jsonPath("$.firstName").is(firstName))
     )
   }
 
@@ -37,6 +51,18 @@ object PetClinicRequests {
     )
   }
 
+  def addPetWithName(petName: String): ChainBuilder = {
+    exec(
+      http(s"Add pet $petName")
+        .post(Paths.pets)
+        .body(StringBody(JacksonSupport.toJsonString(PetFactory.petRequest(petName)))).asJson
+        .check(status.is(201))
+        .check(bodyString.exists)
+        .check(jsonPath("$.id").exists)
+        .check(jsonPath("$.name").is(petName))
+    )
+  }
+
   def getPetType(): ChainBuilder = {
     exec(
       http("GET petType (${petTypeId}, ${petTypeName})")
@@ -55,6 +81,18 @@ object PetClinicRequests {
         .check(status.is(200))
         .check(bodyString.exists)
         .check(jsonPath("$.id").is("${visitId}"))
+    )
+  }
+
+  def addVisitWithDescription(description: String): ChainBuilder = {
+    exec(
+      http(s"Add visit $description")
+        .post(Paths.visits)
+        .body(StringBody(JacksonSupport.toJsonString(VisitFactory.visitRequest(description)))).asJson
+        .check(status.is(201))
+        .check(bodyString.exists)
+        .check(jsonPath("$.id").exists)
+        .check(jsonPath("$.description").is(description))
     )
   }
 }
