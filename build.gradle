@@ -24,21 +24,21 @@ dependencies {
     gatlingImplementation 'io.rest-assured:rest-assured:3.3.0'
     gatlingImplementation 'com.github.javafaker:javafaker:1.0.2'
 
-    implementation 'io.rest-assured:rest-assured:3.3.0'
-    implementation 'org.codehaus.groovy:groovy-all:2.5.14'
-    implementation 'com.github.javafaker:javafaker:1.0.2'
-    implementation 'org.apache.commons:commons-lang3:3.12.0'
-    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.12.1'
-    annotationProcessor "org.projectlombok:lombok:$lombokVersion"
+    compileOnly 'io.rest-assured:rest-assured:3.3.0'
+    compileOnly 'org.codehaus.groovy:groovy-all:2.5.14'
+    compileOnly 'com.github.javafaker:javafaker:1.0.2'
+    compileOnly 'org.apache.commons:commons-lang3:3.12.0'
+    compileOnly 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.12.1'
     compileOnly "org.projectlombok:lombok:$lombokVersion"
+    annotationProcessor "org.projectlombok:lombok:$lombokVersion"
 }
 
 gatling {
-//    toolVersion = '3.4.0'
-//    scalaVersion = '2.12.8'
-//    simulations = {
-//        include '**/*Simulation.scala'
-//    }
+    toolVersion = '3.5.1'
+    scalaVersion = '2.13.3'
+    simulations = {
+        include '**/*Simulation.scala'
+    }
     logLevel = 'WARN' // logback root level
-    logHttp = 'NONE' // set to 'ALL' for all HTTP traffic in TRACE, 'FAILURES' for failed HTTP traffic in DEBUG
+    logHttp = 'FAILURES' // set to 'NONE' for not log; 'ALL' for all HTTP traffic in TRACE; 'FAILURES' for failed HTTP traffic in DEBUG
 }

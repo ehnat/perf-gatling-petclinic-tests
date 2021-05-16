@@ -2,7 +2,6 @@ package com.petclinic.simulations
 
 import com.petclinic.simulations.utils.{HttpConfig, SimulationParameters}
 import io.gatling.core.Predef._
-
 import scala.concurrent.duration.{Duration, FiniteDuration, MINUTES, SECONDS}
 
 class ComplexSimulation extends Simulation {

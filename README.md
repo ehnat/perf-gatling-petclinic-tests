@@ -23,3 +23,6 @@ b) Run one simulation implemented in com.petclinic.simulations.BasicSimulation c
 - simulation: `https://gatling.io/docs/current/general/simulation_setup/`
 - scenario: `https://gatling.io/docs/current/general/scenario/`
 - requests: `https://gatling.io/docs/current/http/`
+
+#### Integration Gatling with Gradle (Gradle plugin):
+`https://gatling.io/docs/current/extensions/gradle_plugin/`

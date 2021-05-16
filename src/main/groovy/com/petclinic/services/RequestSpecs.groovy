@@ -8,6 +8,7 @@ import io.restassured.filter.log.RequestLoggingFilter
 import io.restassured.filter.log.ResponseLoggingFilter
 import io.restassured.http.ContentType
 import io.restassured.specification.RequestSpecification
+import org.apache.http.params.CoreConnectionPNames
 
 import static io.restassured.config.RestAssuredConfig.newConfig
 
@@ -19,8 +20,8 @@ class RequestSpecs {
     private static final int DEFAULT_SOCKET_TIMEOUT_IN_MILLIS = 10_000
 
     private static final List<Filter> LOGGING_FILTERS = [new RequestLoggingFilter(), new ResponseLoggingFilter()]
-    private static final HttpClientConfig HTTP_CLIENT_CONFIG = io.restassured.config.HttpClientConfig.httpClientConfig().setParam(org.apache.http.params.CoreConnectionPNames.CONNECTION_TIMEOUT, DEFAULT_CONNECTION_TIMEOUT_IN_MILLIS)
-            .setParam(org.apache.http.params.CoreConnectionPNames.SO_TIMEOUT, DEFAULT_SOCKET_TIMEOUT_IN_MILLIS)
+    private static final HttpClientConfig HTTP_CLIENT_CONFIG = HttpClientConfig.httpClientConfig().setParam(CoreConnectionPNames.CONNECTION_TIMEOUT, DEFAULT_CONNECTION_TIMEOUT_IN_MILLIS)
+            .setParam(CoreConnectionPNames.SO_TIMEOUT, DEFAULT_SOCKET_TIMEOUT_IN_MILLIS)
 
     private RequestSpecs() {
     }
