@@ -1,10 +1,7 @@
 package com.petclinic.simulations
 
-import com.petclinic.simulations.utils.SimulationParameters
+import com.petclinic.simulations.utils.{HttpConfig, SimulationParameters}
 import io.gatling.core.Predef._
-import io.gatling.http.Predef._
-import io.gatling.http.protocol.HttpProtocolBuilder
-import io.restassured.http.ContentType
 
 class BasicSimulation extends Simulation {
 
@@ -13,13 +10,6 @@ class BasicSimulation extends Simulation {
   val maxResponseTimeInMilisec: Int = 1500
   val requestsPerSec: Int = 5
   val marginRequestsPerSec: Int = 2
-
-  val httpConf: HttpProtocolBuilder =
-    http
-      .baseUrl("http://localhost:9966/petclinic/api")
-      .contentTypeHeader(ContentType.JSON.toString())
-      .acceptHeader(ContentType.JSON.toString())
-      .inferHtmlResources() //automatically parse HTML to find embedded resources and load them asynchronously
 
   before {
     println(
@@ -38,7 +28,7 @@ class BasicSimulation extends Simulation {
         atOnceUsers(players)
       )
   )
-    .protocols(httpConf)
+    .protocols(HttpConfig.httpConf)
     .assertions(
       global.successfulRequests.percent.gte(playerSuccessfulRequests),
       global.requestsPerSec.around(requestsPerSec, marginRequestsPerSec),

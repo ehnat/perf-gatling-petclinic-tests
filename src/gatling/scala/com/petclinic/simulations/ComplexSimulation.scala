@@ -1,10 +1,7 @@
 package com.petclinic.simulations
 
-import com.petclinic.simulations.utils.SimulationParameters
+import com.petclinic.simulations.utils.{HttpConfig, SimulationParameters}
 import io.gatling.core.Predef._
-import io.gatling.http.Predef._
-import io.gatling.http.protocol.HttpProtocolBuilder
-import io.restassured.http.ContentType
 
 import scala.concurrent.duration.{Duration, FiniteDuration, MINUTES, SECONDS}
 
@@ -12,18 +9,14 @@ class ComplexSimulation extends Simulation {
 
   val players: Int = SimulationParameters.players
   val playerSuccessfulRequests: Int = SimulationParameters.playerSuccessfulRequests
-  val maxResponseTimeInMilisec: Int = 1500
-  val requestsPerSec: Int = 1
-  val marginRequestsPerSec: Int = 2
-  val rampUpDuration: FiniteDuration = Duration(1, MINUTES)
-  val maxDuration: FiniteDuration = Duration(2, MINUTES)
 
-  val httpConf: HttpProtocolBuilder =
-    http
-      .baseUrl("http://localhost:9966/petclinic/api")
-      .contentTypeHeader(ContentType.JSON.toString())
-      .acceptHeader(ContentType.JSON.toString())
-      .inferHtmlResources() //automatically parse HTML to find embedded resources and load them asynchronously
+  val rampUpDurationInSec: FiniteDuration = Duration(SimulationParameters.rampUpDuration, SECONDS)
+  val duration5Sec: FiniteDuration = Duration(5, SECONDS)
+  val maxDurationInMin: FiniteDuration = Duration(SimulationParameters.maxDuration, MINUTES)
+
+  val maxResponseTimeInMilisec: Int = 3000
+  val requestsPerSec: Int = 35
+  val marginRequestsPerSec: Int = 5
 
   before {
     println(
@@ -39,11 +32,14 @@ class ComplexSimulation extends Simulation {
   setUp(
     PetClinicScenario.addOwnerPetVisitScenario
       .inject(
-        rampUsers(players) during (rampUpDuration)
+        nothingFor(duration5Sec),
+        atOnceUsers(3 * players),
+        nothingFor(duration5Sec),
+        rampUsers(players) during (rampUpDurationInSec),
       )
   )
-    .protocols(httpConf)
-    .maxDuration(maxDuration)
+    .protocols(HttpConfig.httpConf)
+    .maxDuration(maxDurationInMin)
     .assertions(
       global.successfulRequests.percent.gte(playerSuccessfulRequests),
       global.requestsPerSec.around(requestsPerSec, marginRequestsPerSec),
