@@ -25,4 +25,5 @@ b) Run one simulation implemented in com.petclinic.simulations.BasicSimulation c
 - requests: `https://gatling.io/docs/current/http/`
 
 #### Integration Gatling with Gradle (Gradle plugin):
-`https://gatling.io/docs/current/extensions/gradle_plugin/`
+- `https://gatling.io/docs/current/extensions/gradle_plugin/`
+- gatling plugin is not supported by gradle 7 (max. supported version 6.6.1) - fix is in progress: `https://github.com/gatling/gatling-gradle-plugin/pull/32`
