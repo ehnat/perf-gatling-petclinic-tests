@@ -19,6 +19,7 @@ b) Run one simulation implemented in com.petclinic.simulations.BasicSimulation c
 - `gradlew.bat clean gatlingRun-com.petclinic.simulations.ComplexSimulation -Dplayers=10 -DplayerSuccessfulRequests=99 -DrampUpDurationInSec=20 -DmaxDurationInMin=2`
 
 #### Gatling helpful docs:
+- general: `https://gatling.io/docs/current/`
 - concepts: `https://gatling.io/docs/current/general/concepts/`
 - simulation: `https://gatling.io/docs/current/general/simulation_setup/`
 - scenario: `https://gatling.io/docs/current/general/scenario/`
@@ -27,3 +28,10 @@ b) Run one simulation implemented in com.petclinic.simulations.BasicSimulation c
 #### Integration Gatling with Gradle (Gradle plugin):
 - `https://gatling.io/docs/current/extensions/gradle_plugin/`
 - gatling plugin is not supported by gradle 7 (max. supported version 6.6.1) - fix is in progress: `https://github.com/gatling/gatling-gradle-plugin/pull/32`
+
+#### Performance tests articles:
+- `https://automationrhapsody.com/performance-testing-with-gatling/`
+
+#### Code examples:
+- https://github.com/gatling/gatling-gradle-plugin-demo
+- https://github.com/llatinov/sample-performance-with-gatling
