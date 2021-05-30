@@ -31,7 +31,13 @@ b) Run one simulation implemented in com.petclinic.simulations.BasicSimulation c
 
 #### Performance tests articles:
 - `https://automationrhapsody.com/performance-testing-with-gatling/`
+- `https://automationrhapsody.com/how-to-do-proper-performance-testing/`
+- `https://automationrhapsody.com/performance-load-stress-and-soak-testing/` - backend perf tests
+- `https://automationrhapsody.com/performance-testing-in-the-browser/` - frontend perf tests
 
 #### Code examples:
 - https://github.com/gatling/gatling-gradle-plugin-demo
 - https://github.com/llatinov/sample-performance-with-gatling
+
+#### Basic scala:
+- `https://automationrhapsody.com/performance-testing-with-gatling-scala-fundamentals/`
