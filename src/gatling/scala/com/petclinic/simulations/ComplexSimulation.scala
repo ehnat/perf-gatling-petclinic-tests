@@ -34,7 +34,7 @@ class ComplexSimulation extends Simulation {
         nothingFor(duration5Sec),
         atOnceUsers(3 * players),
         nothingFor(duration5Sec),
-        rampUsers(players) during (rampUpDurationInSec),
+        rampUsers(players) during (rampUpDurationInSec)
       )
   )
     .protocols(HttpConfig.httpConf)
