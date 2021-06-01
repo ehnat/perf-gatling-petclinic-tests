@@ -47,8 +47,10 @@ When application is run api documentation can be found here:
 
 ### How to run tests
 a) run all com.petclinic.simulations:
-- mac: `./gradlew clean gatlingRun`
-- windows: `gradlew.bat clean gatlingRun`
+- mac: `./gradlew clean gatlingRun -Denv=[ENV]`
+- windows: `gradlew.bat clean gatlingRun -Denv=[ENV]`
+
+Default `env` is `default`.
 
 b) run one simulation implemented in com.petclinic.simulations.BasicSimulation class:
 
@@ -58,12 +60,12 @@ b) run one simulation implemented in com.petclinic.simulations.BasicSimulation c
 - windows: `gradlew.bat clean gatlingRun-com.petclinic.simulations.BasicSimulation`
 
 -- with set values from command line:
-- mac: `./gradlew clean gatlingRun-com.petclinic.simulations.BasicSimulation -Dplayers=6 -DplayerSuccessfulRequests=99`
-- windows: `gradlew.bat clean gatlingRun-com.petclinic.simulations.BasicSimulation -Dplayers=6 -DplayerSuccessfulRequests=99`
+- mac: `./gradlew clean gatlingRun-com.petclinic.simulations.BasicSimulation -Dplayers=6 -DplayerSuccessfulRequests=99 -Denv=[ENV]`
+- windows: `gradlew.bat clean gatlingRun-com.petclinic.simulations.BasicSimulation -Dplayers=6 -DplayerSuccessfulRequests=99 -Denv=[ENV]`
 
 c) run one simulation implemented in com.petclinic.simulations.ComplexSimulation class:
-- mac: - windows: `./gradlew clean gatlingRun-com.petclinic.simulations.ComplexSimulation -Dplayers=10 -DplayerSuccessfulRequests=99 -DrampUpDurationInSec=20 -DmaxDurationInMin=2`
-- windows: `gradlew.bat clean gatlingRun-com.petclinic.simulations.ComplexSimulation -Dplayers=10 -DplayerSuccessfulRequests=99 -DrampUpDurationInSec=20 -DmaxDurationInMin=2`
+- mac: `./gradlew clean gatlingRun-com.petclinic.simulations.ComplexSimulation -Dplayers=10 -DplayerSuccessfulRequests=99 -DrampUpDurationInSec=20 -DmaxDurationInMin=2 -Denv=[ENV]`
+- windows: `gradlew.bat clean gatlingRun-com.petclinic.simulations.ComplexSimulation -Dplayers=10 -DplayerSuccessfulRequests=99 -DrampUpDurationInSec=20 -DmaxDurationInMin=2 -Denv=[ENV]`
 
 
 ### USEFUL LINKS:

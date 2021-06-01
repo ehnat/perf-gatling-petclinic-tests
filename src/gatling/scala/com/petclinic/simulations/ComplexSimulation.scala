@@ -9,9 +9,9 @@ class ComplexSimulation extends Simulation {
   val players: Int = SimulationParameters.players
   val playerSuccessfulRequests: Int = SimulationParameters.playerSuccessfulRequests
 
-  val rampUpDurationInSec: FiniteDuration = Duration(SimulationParameters.rampUpDuration, SECONDS)
+  val rampUpDurationInSec: FiniteDuration = SimulationParameters.rampUpDurationInSec
   val duration5Sec: FiniteDuration = Duration(5, SECONDS)
-  val maxDurationInMin: FiniteDuration = Duration(SimulationParameters.maxDuration, MINUTES)
+  val maxDurationInMin: FiniteDuration = SimulationParameters.maxDurationInMin
 
   val maxResponseTimeInMilisec: Int = 3000
   val requestsPerSec: Int = 35
