@@ -94,3 +94,8 @@ c) run one simulation implemented in com.petclinic.simulations.ComplexSimulation
 - `https://automationrhapsody.com/performance-testing-with-gatling-scala-fundamentals/`
 - `https://www.tutorialspoint.com/scala/index.htm`
 - `https://blog.jooq.org/2014/08/01/the-10-most-annoying-things-coming-back-to-java-after-some-days-of-scala/`
+
+### WHAT TO IMPROVE:
+In `main` there is code responsible for creating objects which are used in tests.
+In my other repository (https://github.com/ehnat/restassured-petclinic-tests-example) I use it as well.
+It will be good to have this part separately (separate library used as dependency). 
